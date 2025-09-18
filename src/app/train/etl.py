@@ -24,12 +24,19 @@ class UserGenerator:
         self.seed = seed
 
     def create_dataset(self):
-        df = fetch_ucirepo(id=352) 
-    
-        print(df.metadata) 
-        
-        print(df.variables) 
-        return df
+        df = fetch_ucirepo(id=352)
+        if isinstance(df, tuple):
+            # esperado: (X, y, metadata, variables)
+            X, y, metadata, variables = df
+        else:
+            X = df.data.features
+            y = df.data.targets
+            metadata = df.metadata
+            variables = df.variables
+
+        print(metadata)
+        print(variables)
+        return X, y, metadata, variables
     
     def Invoice_Tipo(self):
         self["InvoiceNo"] = self["InvoiceNo"].astype(str)
