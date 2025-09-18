@@ -24,20 +24,11 @@ class UserGenerator:
     def __init__(self, n_samples=1000, seed=42):
         self.n_samples = n_samples
         self.seed = seed
+        self.df = None
 
     def create_dataset(self, include_target: bool = True, target_prefix: str = "target_") -> pd.DataFrame:
         ds = ucimlrepo.fetch_ucirepo(id=352)
-        X = ds.data.features.copy()          
-        y = ds.data.targets                  
-
-        if include_target and y is not None:
-            if not isinstance(y, pd.DataFrame):
-                y = pd.DataFrame(y)
-            if any(c is None or c == "" for c in y.columns):
-                y.columns = [f"{target_prefix}{i}" for i in range(y.shape[1])]
-            y = y.rename(columns=lambda c: c if c not in X.columns else f"{c}_target")
-            return pd.concat([X, y], axis=1)
-        
+        X = ds.data.features.copy()     # Online Retail no trae y
         self.df = X
         return self.df
     
@@ -46,15 +37,32 @@ class UserGenerator:
         self.df["InvoiceNo"] = self.df["InvoiceNo"].astype(str)
         return self.df
 
-    def Date_Tipo(self):
-        self["InvoiceDate"] = pd.to_datetime(self["InvoiceDate"], errors="coerce")
-        self = self.dropna(subset=["InvoiceDate"])
+    def invoice_tipo(self) -> pd.DataFrame:
+        if self.df is None: raise ValueError("Llama primero a create_dataset().")
+        self.df["InvoiceNo"] = self.df["InvoiceNo"].astype(str)
+        return self.df
 
-    def limpieza_datos(self):
-        self = self[(self["UnitPrice"] > 0) & (self["Quantity"] > 0)]
-        self = self[~self["InvoiceNo"].str.startswith("C")]
-        self = self.dropna(subset=["CustomerID"]).copy()
-        self["CustomerID"] = self["CustomerID"].astype(int)
+    def date_tipo(self) -> pd.DataFrame:
+        if self.df is None: raise ValueError("Llama primero a create_dataset().")
+        self.df["InvoiceDate"] = pd.to_datetime(self.df["InvoiceDate"], errors="coerce")
+        self.df = self.df.dropna(subset=["InvoiceDate"])
+        return self.df
+
+    def limpieza_datos(self) -> pd.DataFrame:
+        if self.df is None: raise ValueError("Llama primero a create_dataset().")
+        df = self.df
+        df = df[(df["UnitPrice"] > 0) & (df["Quantity"] > 0)]
+        df = df[~df["InvoiceNo"].astype(str).str.startswith("C")]
+        df = df.dropna(subset=["CustomerID"]).copy()
+        df["CustomerID"] = df["CustomerID"].astype(int)
+        self.df = df
+        return self.df
+
+    def run_etl(self) -> pd.DataFrame:
+        self.invoice_tipo()
+        self.date_tipo()
+        self.limpieza_datos()
+        return self.df
     
         
 
