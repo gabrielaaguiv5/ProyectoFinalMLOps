@@ -49,7 +49,7 @@ class FeatureEngineer:
         if self.df is None: raise ValueError("Primero llama a set_df(df).")
         out = (
             self.df.groupby("CustomerID", group_keys=False)
-                .apply(self._historial_compra_one)
+                .apply(self.historial_compra)
                 .reset_index(drop=True)
         )
         self.df = out
