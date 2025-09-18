@@ -29,7 +29,7 @@ class UserGenerator:
         print(df.metadata) 
         
         print(df.variables) 
-        return X, y, df.metadata, df.variables
+        return df, df.metadata, df.variables
     
     def Invoice_Tipo(self):
         self["InvoiceNo"] = self["InvoiceNo"].astype(str)
