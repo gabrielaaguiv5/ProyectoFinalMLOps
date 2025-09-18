@@ -26,8 +26,28 @@ class UserGenerator:
         X = ds.data.features.copy()     # Online Retail no trae y
         self.df = X
         return self.df
-    
 
+    def date_tipo(self) -> pd.DataFrame:
+        if self.df is None: raise ValueError("Llama primero a create_dataset().")
+        self.df["InvoiceDate"] = pd.to_datetime(self.df["InvoiceDate"], errors="coerce")
+        self.df = self.df.dropna(subset=["InvoiceDate"])
+        return self.df
+
+    def limpieza_datos(self) -> pd.DataFrame:
+        if self.df is None: raise ValueError("Llama primero a create_dataset().")
+        df = self.df
+        df = df[(df["UnitPrice"] > 0) & (df["Quantity"] > 0)]
+        df = df[~df["InvoiceNo"].astype(str).str.startswith("C")]
+        df = df.dropna(subset=["CustomerID"]).copy()
+        df["CustomerID"] = df["CustomerID"].astype(int)
+        self.df = df
+        return self.df
+
+    def run_etl(self) -> pd.DataFrame:
+        self.invoice_tipo()
+        self.date_tipo()
+        self.limpieza_datos()
+        return self.df
     
         
 
