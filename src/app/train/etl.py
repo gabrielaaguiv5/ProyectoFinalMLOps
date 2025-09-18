@@ -33,4 +33,22 @@ class UserGenerator:
         
         print(df.variables) 
         return X, y, df.metadata, df.variables
-        
+    
+    def Invoice_Tipo(self):
+        self["InvoiceNo"] = self["InvoiceNo"].astype(str)
+
+    def Date_Tipo(self):
+        self["InvoiceDate"] = pd.to_datetime(self["InvoiceDate"], errors="coerce")
+        self = self.dropna(subset=["InvoiceDate"])
+
+    def limpieza_datos_cancelados(self):
+        self = self[(self["UnitPrice"] > 0) & (self["Quantity"] > 0)]
+        self = self[~self["InvoiceNo"].str.startswith("C")]
+
+    def depuracion_datos_clientes(self):
+        self = self.dropna(subset=["CustomerID"]).copy()
+        self["CustomerID"] = self["CustomerID"].astype(int)
+
+     
+
+    
