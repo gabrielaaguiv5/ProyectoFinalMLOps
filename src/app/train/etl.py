@@ -25,9 +25,6 @@ class UserGenerator:
 
     def create_dataset(self):
         df = fetch_ucirepo(id=352) 
-        
-        X = df.data.features 
-        y = df.data.targets 
     
         print(df.metadata) 
         
