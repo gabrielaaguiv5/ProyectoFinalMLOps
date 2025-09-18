@@ -27,20 +27,17 @@ class UserGenerator:
 
     def create_dataset(self, include_target: bool = True, target_prefix: str = "target_") -> pd.DataFrame:
         ds = ucimlrepo.fetch_ucirepo(id=352)
-        X = ds.data.features.copy()          # <-- ya es DataFrame
-        y = ds.data.targets                  # puede ser None o DataFrame/Series
+        X = ds.data.features.copy()          
+        y = ds.data.targets                  
 
         if include_target and y is not None:
             if not isinstance(y, pd.DataFrame):
                 y = pd.DataFrame(y)
-            # Asegura nombres de columnas para y
             if any(c is None or c == "" for c in y.columns):
                 y.columns = [f"{target_prefix}{i}" for i in range(y.shape[1])]
-            # Evita choques de nombres con X
             y = y.rename(columns=lambda c: c if c not in X.columns else f"{c}_target")
             return pd.concat([X, y], axis=1)
 
-        # Para Online Retail (id=352), y es None → devolvemos X
         return X
     
     def Invoice_Tipo(self):
