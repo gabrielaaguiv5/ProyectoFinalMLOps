@@ -44,7 +44,6 @@ class UserGenerator:
         return self.df
 
     def run_etl(self) -> pd.DataFrame:
-        self.invoice_tipo()
         self.date_tipo()
         self.limpieza_datos()
         return self.df
