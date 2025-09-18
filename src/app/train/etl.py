@@ -12,7 +12,7 @@ deben recibir promociones basado en su comportamiento transaccional y perfil.
 import json
 import random
 from datetime import datetime, timedelta
-from ucimlrepo import fetch_ucirepo, list_available_datasets
+import ucimlrepo
 import numpy as np
 import pandas as pd
 
@@ -24,19 +24,16 @@ class UserGenerator:
         self.seed = seed
 
     def create_dataset(self):
-        df = fetch_ucirepo(id=352)
-        if isinstance(df, tuple):
-            # esperado: (X, y, metadata, variables)
-            X, y, metadata, variables = df
-        else:
-            X = df.data.features
-            y = df.data.targets
-            metadata = df.metadata
-            variables = df.variables
-
-        print(metadata)
-        print(variables)
-        return df
+        df = ucimlrepo.fetch_ucirepo(id=352)
+        if isinstance(ds, tuple):
+            from types import SimpleNamespace
+            X, y, metadata, variables = ds
+            ds = SimpleNamespace(
+                data=SimpleNamespace(features=X, targets=y),
+                metadata=metadata,
+                variables=variables
+            )
+        return ds
     
     def Invoice_Tipo(self):
         self["InvoiceNo"] = self["InvoiceNo"].astype(str)
