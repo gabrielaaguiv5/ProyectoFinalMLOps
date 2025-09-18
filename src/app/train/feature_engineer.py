@@ -16,13 +16,13 @@ class FeatureEngineer:
         self.df.sort_values(["CustomerID", "InvoiceDate", "Description"], kind="mergesort", inplace=True)
         return self.df
 
-    def historial_compra(g: pd.DataFrame) -> pd.DataFrame:
+    def historial_compra(self, g: pd.DataFrame) -> pd.DataFrame:
         cp = (
             g.groupby(["Description", "InvoiceDate", "Country"], as_index=False)
-             .agg(Quantity=("Quantity", "sum"),
-                  Revenue=("Revenue", "sum"),
-                  UnitPrice=("UnitPrice", "mean"))
-             .sort_values(["InvoiceDate", "Description"], kind="mergesort")
+             .agg(Quantity=("Quantity","sum"),
+                  Revenue=("Revenue","sum"),
+                  UnitPrice=("UnitPrice","mean"))
+             .sort_values(["InvoiceDate","Description"], kind="mergesort")
              .reset_index(drop=True)
         )
         cp["CustomerID"] = g.name
@@ -49,8 +49,8 @@ class FeatureEngineer:
         if self.df is None: raise ValueError("Primero llama a set_df(df).")
         out = (
             self.df.groupby("CustomerID", group_keys=False)
-                .apply(self.historial_compra)
-                .reset_index(drop=True)
+                   .apply(self.historial_compra)   # <-- ahora acepta g
+                   .reset_index(drop=True)
         )
         self.df = out
         return self.df
