@@ -25,15 +25,15 @@ class UserGenerator:
 
     def create_dataset(self):
         df = ucimlrepo.fetch_ucirepo(id=352)
-        if isinstance(ds, tuple):
+        if isinstance(df, tuple):
             from types import SimpleNamespace
-            X, y, metadata, variables = ds
-            ds = SimpleNamespace(
+            X, y, metadata, variables = df
+            df = SimpleNamespace(
                 data=SimpleNamespace(features=X, targets=y),
                 metadata=metadata,
                 variables=variables
             )
-        return ds
+        return df
     
     def Invoice_Tipo(self):
         self["InvoiceNo"] = self["InvoiceNo"].astype(str)
