@@ -37,7 +37,6 @@ class UserGenerator:
         if self.df is None: raise ValueError("Llama primero a create_dataset().")
         df = self.df
         df = df[(df["UnitPrice"] > 0) & (df["Quantity"] > 0)]
-        df = df[~df["InvoiceNo"].astype(str).str.startswith("C")]
         df = df.dropna(subset=["CustomerID"]).copy()
         df["CustomerID"] = df["CustomerID"].astype(int)
         self.df = df
