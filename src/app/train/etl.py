@@ -37,11 +37,14 @@ class UserGenerator:
                 y.columns = [f"{target_prefix}{i}" for i in range(y.shape[1])]
             y = y.rename(columns=lambda c: c if c not in X.columns else f"{c}_target")
             return pd.concat([X, y], axis=1)
-
-        return X
+        
+        self.df = X
+        return self.df
     
-    def Invoice_Tipo(self, ds):
-        ds["InvoiceNo"] = ds["InvoiceNo"].astype(str)
+    def invoice_tipo(self) -> pd.DataFrame:
+        if self.df is None: raise ValueError("Llama primero a create_dataset().")
+        self.df["InvoiceNo"] = self.df["InvoiceNo"].astype(str)
+        return self.df
 
     def Date_Tipo(self):
         self["InvoiceDate"] = pd.to_datetime(self["InvoiceDate"], errors="coerce")
