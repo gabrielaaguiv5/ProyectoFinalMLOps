@@ -15,6 +15,8 @@ from datetime import datetime, timedelta
 import ucimlrepo
 import numpy as np
 import pandas as pd
+from types import SimpleNamespace
+
 
 
 class UserGenerator:
@@ -24,16 +26,17 @@ class UserGenerator:
         self.seed = seed
 
     def create_dataset(self):
-        df = ucimlrepo.fetch_ucirepo(id=352)
-        if isinstance(df, tuple):
-            from types import SimpleNamespace
-            X, y, metadata, variables = df
-            df = SimpleNamespace(
+        ds = ucimlrepo.fetch_ucirepo(id=352)
+
+        # Si por algún wrapper llega tupla: (X, y, metadata, variables), la envolvemos.
+        if isinstance(ds, tuple):
+            X, y, metadata, variables = ds
+            ds = SimpleNamespace(
                 data=SimpleNamespace(features=X, targets=y),
                 metadata=metadata,
-                variables=variables
+                variables=variables,
             )
-        return df
+        return ds
     
     def Invoice_Tipo(self):
         self["InvoiceNo"] = self["InvoiceNo"].astype(str)
