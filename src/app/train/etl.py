@@ -12,9 +12,11 @@ deben recibir promociones basado en su comportamiento transaccional y perfil.
 import json
 import random
 from datetime import datetime, timedelta
-from ucimlrepo import fetch_ucirepo, list_available_datasets
+import ucimlrepo
 import numpy as np
 import pandas as pd
+from types import SimpleNamespace
+
 
 
 class UserGenerator:
@@ -23,35 +25,38 @@ class UserGenerator:
         self.n_samples = n_samples
         self.seed = seed
 
-    def create_dataset(self):
-        df = fetch_ucirepo(id=352)
-        if isinstance(df, tuple):
-            # esperado: (X, y, metadata, variables)
-            X, y, metadata, variables = df
-        else:
-            X = df.data.features
-            y = df.data.targets
-            metadata = df.metadata
-            variables = df.variables
+    def create_dataset(self, include_target: bool = True, target_prefix: str = "target_") -> pd.DataFrame:
+        ds = ucimlrepo.fetch_ucirepo(id=352)
+        X = ds.data.features.copy()          
+        y = ds.data.targets                  
 
-        print(metadata)
-        print(variables)
-        return df
+        if include_target and y is not None:
+            if not isinstance(y, pd.DataFrame):
+                y = pd.DataFrame(y)
+            if any(c is None or c == "" for c in y.columns):
+                y.columns = [f"{target_prefix}{i}" for i in range(y.shape[1])]
+            y = y.rename(columns=lambda c: c if c not in X.columns else f"{c}_target")
+            return pd.concat([X, y], axis=1)
+        
+        self.df = X
+        return self.df
     
-    def Invoice_Tipo(self):
-        self["InvoiceNo"] = self["InvoiceNo"].astype(str)
+    def invoice_tipo(self) -> pd.DataFrame:
+        if self.df is None: raise ValueError("Llama primero a create_dataset().")
+        self.df["InvoiceNo"] = self.df["InvoiceNo"].astype(str)
+        return self.df
 
     def Date_Tipo(self):
         self["InvoiceDate"] = pd.to_datetime(self["InvoiceDate"], errors="coerce")
         self = self.dropna(subset=["InvoiceDate"])
 
-    def limpieza_datos_cancelados(self):
+    def limpieza_datos(self):
         self = self[(self["UnitPrice"] > 0) & (self["Quantity"] > 0)]
         self = self[~self["InvoiceNo"].str.startswith("C")]
-
-    def depuracion_datos_clientes(self):
         self = self.dropna(subset=["CustomerID"]).copy()
         self["CustomerID"] = self["CustomerID"].astype(int)
+    
+        
 
      
 
