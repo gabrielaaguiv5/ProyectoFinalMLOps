@@ -40,8 +40,8 @@ class UserGenerator:
 
         return X
     
-    def Invoice_Tipo(self, df):
-        df["InvoiceNo"] = df["InvoiceNo"].astype(str)
+    def Invoice_Tipo(self, ds):
+        ds["InvoiceNo"] = ds["InvoiceNo"].astype(str)
 
     def Date_Tipo(self):
         self["InvoiceDate"] = pd.to_datetime(self["InvoiceDate"], errors="coerce")
