@@ -1,3 +1,5 @@
+import os
+import joblib
 import pandas as pd
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
@@ -224,3 +226,9 @@ class TrainMlflow:
             pass
 
         return metrics
+    
+    def save_model(self, path="models/model.pkl"):
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        joblib.dump(self.pipeline, path)
+        print(f"✅ Modelo guardado en {path}")
+        return path
