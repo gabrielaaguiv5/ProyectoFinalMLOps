@@ -69,7 +69,6 @@ class TrainMlflow:
         X_train, y_train = X.loc[is_train], y.loc[is_train]
         X_test,  y_test  = X.loc[is_test],  y.loc[is_test]
 
-        # (Opcional) trazas
         print(f"Rango total: {df['InvoiceDate'].min()} → {dmax} | cutoff: {cutoff}")
         print(f"train_end: {train_end}")
         print(f"train: {int(is_train.sum())} | test: {int(is_test.sum())}")
