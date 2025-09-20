@@ -2,7 +2,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
-from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model import LogisticRegression,random_forest,DecisionTreeClassifier
 from sklearn.impute import SimpleImputer
 import mlflow
 import mlflow.sklearn
@@ -14,9 +14,11 @@ import warnings
 warnings.filterwarnings('ignore')
 
 import optuna
+from sklearn.metrics import accuracy_score, f1_score
+from sklearn.linear_model import LogisticRegression
 
 class TrainOptuna:
-
+    
     def __init__(self, X_train, X_test, y_train, y_test, model=LogisticRegression, metric="f1"):
         self.X_train = X_train
         self.X_test = X_test
