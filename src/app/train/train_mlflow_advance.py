@@ -1,5 +1,6 @@
+import os
+import joblib
 import pandas as pd
-from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from optuna.integration.mlflow import MLflowCallback
 from sklearn.compose import ColumnTransformer
@@ -143,11 +144,12 @@ class TrainOptuna:
             ]
         )
         return preprocessor
-    def create_pipeline_train(self):
+    
+    def create_pipeline_train(self, model):
         pipeline = Pipeline(steps=[
-            ('preprocessor', self.create_preprocessor()),
-            ('classifier', self.model)
-        ])
+        ('preprocessor', self.create_preprocessor()),
+        ('classifier', model)
+    ])
         return pipeline
     
     def create_objective(self, X_train, X_test, y_train, y_test):
@@ -230,7 +232,7 @@ class TrainOptuna:
             study: Optuna study object with optimization results
         """
         # Split data once for all trials
-        X_train, X_test, y_train, y_test = self.train_test_split()
+        X_train, X_test, y_train, y_test = self.train_test_split_by_quantiles()
         
         # Create Optuna study
         study = optuna.create_study(
@@ -383,3 +385,9 @@ class TrainOptuna:
             pass
 
         return metrics
+    
+    def save_model(self, path="models/model.pkl"):
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        joblib.dump(self.best_pipeline, path)   # ← not self.pipeline
+        print(f"✅ Modelo guardado en {path}")
+        return path
