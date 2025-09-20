@@ -1,16 +1,10 @@
-from __future__ import annotations
-import mlflow
 import pandas as pd
-import numpy as np
-from typing import Tuple, List, Optional, Dict
-
-from sklearn.base import accuracy_score
-from sklearn.compose import ColumnTransformer
-from sklearn.impute import SimpleImputer
-from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.pipeline import Pipeline
-from sklearn.metrics import classification_report, f1_score, precision_score, recall_score, roc_auc_score, average_precision_score
-
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.impute import SimpleImputer
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+import mlflow
 
 class TrainMlflow:
     def __init__(
