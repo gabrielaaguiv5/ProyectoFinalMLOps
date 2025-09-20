@@ -4,6 +4,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.linear_model import LogisticRegression
 from sklearn.impute import SimpleImputer
+import optuna
 import mlflow
 import mlflow.sklearn
 from sklearn.metrics import (
@@ -11,6 +12,7 @@ from sklearn.metrics import (
 )
 import warnings
 warnings.filterwarnings('ignore')
+
 
 class TrainMlflow:
     def __init__(
