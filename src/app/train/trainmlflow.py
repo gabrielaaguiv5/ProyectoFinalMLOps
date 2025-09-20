@@ -12,7 +12,7 @@ import mlflow.sklearn
 
 
 class Trainermlflow:
-
+    
     def __init__(self, df: pd.DataFrame, numeric_features: list, categorical_features: list, target_column: str):
         self.df = df
         self.numeric_features = numeric_features
