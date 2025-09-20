@@ -60,3 +60,9 @@ class FeatureEngineer:
         self.linea_tiempo()
         self.historial_compra_cliente()
         return self.df
+    
+    def save_dataset(self, path: str):
+        if self.df is None:
+            raise ValueError("Primero corre .run() para procesar el dataset.")
+        self.df.to_parquet(path, index=False) 
+        print(f"Dataset guardado en {path}")
