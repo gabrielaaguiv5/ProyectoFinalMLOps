@@ -20,13 +20,7 @@ La idea fue estructurarlo de manera que todo el flujo, desde que recibimos los d
 ## Estructura del Proyecto
 
 ### 📂 `src/app`
-Este módulo es el encargado de tomar el modelo entrenado y exponerlo a través de una API. No se trata solo de devolver predicciones, sino de garantizar que todo el flujo sea confiable y consistente.
-Nos enfocamos en que la API:
-- Reciba peticiones externas y aplique el mismo preprocesamiento y devuelva predicciones listas para usar.
-- Valide correctamente los datos de entrada, evitando errores o inconsistencias 
-- Mantenga la trazabilidad mediante logging.
-- Ofrezca endpoints adicionales de salud y versión del modelo, para asegurar disponibilidad y control de cambios.
-
+El directorio src/ contiene todo el código de la aplicación (entrenamiento e inferencia) organizado para asegurar paridad tren-serving, trazabilidad con MLflow y fácil mantenimiento. 
 ---
 ## 📂 Estructura del repositorio
 
@@ -208,6 +202,8 @@ best_pipeline, best_run_id, study = trainer.train()   # runs Optuna + logs to ML
 trainer.save_model("models/modeloptuna.pkl")
 <img width="921" height="335" alt="image" src="https://github.com/user-attachments/assets/42437eeb-5cc7-410b-a97a-e06de71caa65" />
 <img width="921" height="296" alt="image" src="https://github.com/user-attachments/assets/ad47696b-cea1-471e-bd7f-c5ad5df1cffc" />
+<img width="921" height="453" alt="image" src="https://github.com/user-attachments/assets/11a8fc30-350c-4660-9c1a-56fe19a65357" />
+<img width="921" height="427" alt="image" src="https://github.com/user-attachments/assets/61e957b7-7813-4a00-bc8a-79aaab5337c3" />
 
 
 
