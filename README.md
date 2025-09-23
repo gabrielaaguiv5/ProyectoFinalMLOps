@@ -132,3 +132,82 @@ src/app/train/models/: salida de modelos (model.pkl, etc.).
 
 src/app/train/task_train.ipynb: cuaderno guía del proceso de entrenamiento (misma lógica que los scripts).
 
+
+## Resultados en MLFlow
+
+<img width="921" height="398" alt="image" src="https://github.com/user-attachments/assets/9ac4771d-f228-4bde-a410-2537c21121fc" />
+
+1. **Logistic regression:**
+
+experiment_name = "recompra-LogReg"
+mlflow.set_tracking_uri("http://127.0.0.1:5000")
+mlflow.set_experiment(experiment_name)
+
+/# Enable autologging for sklearn models
+mlflow.sklearn.autolog(
+    log_input_examples=True,
+    log_model_signatures=True,
+    log_models=True,
+    disable=False,
+    exclusive=False,
+    disable_for_unsupported_versions=False,
+    silent=False,
+    max_tuning_runs=5
+)
+...
+
+model = LogisticRegression(max_iter=500)
+
+Instancia y entrena
+trainer = TrainMlflow(
+    df=df_engineered,
+    numeric_features=num_feats,
+    categorical_features=cat_feats,
+    target_column='y_repurchase_30d',
+    model=model,
+    mlflow_setup={"tracking_uri": "file:./mlruns", "experiment_name": "OnlineRetail"}
+)
+
+pipeline, run_id = trainer.train()
+trainer.pipeline = pipeline                  # <- necesario para save_model()
+trainer.save_model("models/model.pkl")       # ✅ Modelo guardado en models/model.pkl
+
+<img width="921" height="391" alt="image" src="https://github.com/user-attachments/assets/8fa22b60-614c-4207-86e1-53d9691194b3" />
+<img width="921" height="317" alt="image" src="https://github.com/user-attachments/assets/89d779ce-1af9-462a-bec8-213c06e6db3e" />
+<img width="921" height="449" alt="image" src="https://github.com/user-attachments/assets/a1c08465-40c2-4289-8d1e-29be5e548a4a" />
+<img width="921" height="452" alt="image" src="https://github.com/user-attachments/assets/5c7e2c00-ddca-4a8b-aed4-349898ab85c1" />
+<img width="921" height="458" alt="image" src="https://github.com/user-attachments/assets/b8a69611-c77d-4b01-9051-be93858fca2c" />
+<img width="921" height="457" alt="image" src="https://github.com/user-attachments/assets/59a3ba40-6557-43ac-bdb4-595d87c1c1b8" />
+
+2. **Logistic regression con Optuna:**
+
+mlflow.set_experiment("recompra-optuna")
+
+params = {
+            'solver': ('categorical', ['lbfgs', 'liblinear', 'saga']),
+            'C':      ('float', 1e-3, 1e2, True),
+            'max_iter': ('int', 300, 1500),
+            'class_weight': ('categorical', [None, 'balanced']),
+            # solver-specific penalties are tricky to encode generically—start simple with l2
+            'penalty': ('categorical', ['l2']),
+}
+
+trainer = TrainOptuna(
+    df=df_engineered,
+    numeric_features=num_feats,
+    categorical_features=cat_feats,
+    target_column='y_repurchase_30d',
+    model_class=LogisticRegression,
+    model_params={},                 
+    n_trials=30,                     
+    optimization_metric='roc_auc',   
+    param_distributions=params,
+)
+
+best_pipeline, best_run_id, study = trainer.train()   # runs Optuna + logs to MLflow
+trainer.save_model("models/modeloptuna.pkl")
+<img width="921" height="335" alt="image" src="https://github.com/user-attachments/assets/42437eeb-5cc7-410b-a97a-e06de71caa65" />
+<img width="921" height="296" alt="image" src="https://github.com/user-attachments/assets/ad47696b-cea1-471e-bd7f-c5ad5df1cffc" />
+
+
+
