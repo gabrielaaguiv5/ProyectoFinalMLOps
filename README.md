@@ -8,61 +8,16 @@
 ---
 
 ## Descripción General
+# ProyectoFinalMLOps
+
+Pipeline de MLOps para modelar \*\*recompra a 30 días\*\* (`y\_repurchase\_30d`) sobre el dataset de Online Retail. El proyecto incluye ETL, \*feature engineering\*, división temporal, entrenamiento trazable con MLflow, serialización del pipeline e inferencia por lotes.
+
 Este proyecto lo organizamos en varias carpetas dentro de `src/`, cada una con un rol muy claro en el ciclo de vida del modelo.  
 La idea fue estructurarlo de manera que todo el flujo, desde que recibimos los datos hasta que el modelo está disponible en producción, quedara ordenado, fácil de reproducir y entendible para cualquier persona del equipo.
 
 ---
 
 ## Estructura del Proyecto
-
-### 📂 `src/data`: 
-En esta sección se concentra todo lo relacionado con los datos, tanto en su forma cruda como en su versión ya procesada. Es decir, aquí almacenamos los datos originales tal cual se reciben y también aquellos que han pasado por un primer nivel de limpieza y transformación.
-- Punto de partida: se guardan los datasets de entrada o las conexiones directas a las fuentes de información.
-- Procesamiento inicial: se incluyen los scripts que realizan el ETL básico, es decir, la extracción desde archivos o bases de datos, la limpieza preliminar y el guardado en formatos intermedios listos para usarse en etapas posteriores.
-se definió un pipeline que garantiza que siempre recibamos datos en el mismo formato, sin duplicados ni columnas inconsistentes.
-
----
-
-### 📂 `src/etl: 
-En esta parte definimos los pasos de limpieza y transformación básica de los datos. El ETL funciona como un filtro que depura errores, inconsistencias o formatos extraños antes de que la información avance a la siguiente fase. Así aseguramos que todos trabajemos con datasets limpios y ordenados, evitando valores atípicos que podrían afectar el entrenamiento o las predicciones
-
-Dentro de esta sección se encuentran los pipelines de transformación, que se encargan de:
-- Elimina valores faltantes, corrige tipos de datos y estandariza formatos.  
-- Asegura que cualquier dataset nuevo siga el mismo flujo.
-- Garantizar que cualquier dataset nuevo siga exactamente el mismo flujo, evitando problemas futuros en las etapas de modelado o predicción.
-
----
-
-### 📂 `src/feature_engineering`
-En esta etapa dimos el salto de datos crudos a variables realmente útiles. Es decir, transformamos las columnas originales en información que el modelo puede aprovechar al máximo: codificaciones de texto, escalado de números y generación de nuevas variables. Esta parte fue clave porque aquí es donde los datos empezaron a tener verdadera “inteligencia”.
-El módulo de feature engineering se encarga de:
-  - Convertir variables categóricas en valores numéricos.  
-  - Escalado de variables numéricas.  
-  - Creación de nuevas variables predictivas.  
-En resumen, aquí es donde los datos reciben una forma estructurada e inteligente, lista para que el modelo pueda realmente aprender y mejorar su desempeño  
-
----
-
-### 📂 `src/models`
-Este módulo es nuestro laboratorio de entrenamiento. Aquí pusimos a prueba distintos algoritmos, ajustamos hiperparámetros y evaluamos configuraciones hasta encontrar las que ofrecían mejores resultados. Fue, en pocas palabras, el espacio donde “nació” el modelo que hoy está listo para ponerse en producción.
-Dentro de este módulo se concentra todo lo relacionado con el ciclo de entrenamiento de modelos:
-- Se definen los algoritmos, hiperparámetros y el flujo completo de entrenamiento.
-- Se implementan métricas de validación (accuracy, recall, F1, entre otras) para medir el desempeño.  
-- Los modelos entrenados se exportan como artefactos listos para que la API los consuma de manera directa.
-
----
-
-### 📂 `src/pipelines`
-En este módulo lo que hicimos fue conectar todas las piezas en un flujo bien definido:
-ETL → Feature Engineering → Entrenamiento → Validación.
-Gracias a esto, el proceso se ejecuta siempre de manera ordenada y automática, sin depender de pasos manuales. Así garantizamos que, si mañana alguien del equipo corre el pipeline, obtenga exactamente el mismo resultado.
-- Conecta todas las piezas en un flujo completo:
-Este módulo se encarga de:  
-- Integrar en un solo flujo las etapas de ETL, Feature Engineering, Modelado y Validación.
-- Orquestar los scripts en el orden correcto para asegurar reproducibilidad.
-- Hacer que el pipeline funcione igual tanto en desarrollo como en producción
-
----
 
 ### 📂 `src/app`
 Este módulo es el encargado de tomar el modelo entrenado y exponerlo a través de una API. No se trata solo de devolver predicciones, sino de garantizar que todo el flujo sea confiable y consistente.
@@ -73,50 +28,107 @@ Nos enfocamos en que la API:
 - Ofrezca endpoints adicionales de salud y versión del modelo, para asegurar disponibilidad y control de cambios.
 
 ---
+## 📂 Estructura del repositorio
 
-### 📂 `src/tests`
-En esta carpeta reunimos todas las pruebas automáticas que nos ayudan a validar que cada parte del proyecto funcione como debe. La idea fue asegurarnos de que tanto las piezas pequeñas como el sistema completo se mantengan estables, incluso cuando seguimos haciendo mejoras.
-Incluye distintos tipos de pruebas:
-  - **Unitarias** → verifican que cada función (ETL, feature engineering, etc.) haga lo que corresponde
-  - **Integración** → validan que los pipelines se ejecuten de principio a fin sin problemas.  
-  - **Contrato** → confirman que la API responda correctamente ante inputs válidos e inválidos. 
-En resumen, este módulo nos da la confianza de que todo lo que construimos funciona igual hoy y seguirá funcionando mañana
+\```
 
----
+src/
 
-### 📂 `src/config`
-Por último, en esta carpeta centralizamos todas las configuraciones del proyecto: rutas, parámetros, nombres de artefactos y cualquier valor que pueda variar según el ambiente (desarrollo, pruebas o producción). De esta forma no tenemos que revisar el código línea por línea cada vez que haya que ajustar algo.
-Aquí se incluyen:
-- Configuraciones centralizadas: rutas, parámetros y variables de entorno.  
-- Facilita cambiar setups entre desarrollo, pruebas y producción.  
-- Mantiene el código limpio y ordenado.
-Este módulo nos permite ajustar la configuración de manera simple y ordenada, manteniendo el código limpio y evitando errores por cambios manuales.
----
+└─ app/
 
-En resumen, este proyecto está organizado para cubrir todo el ciclo de vida de un modelo en producción, siguiendo un flujo completo de MLOps. Desde la entrada de datos crudos, su limpieza y transformación, hasta el entrenamiento, validación, despliegue mediante API y pruebas automáticas, cada módulo está diseñado para que el proceso sea reproducible, escalable y confiable:
+├─ train/
+
+│  ├─ mlartifacts/              # Artefactos/experimentos (MLflow/auxiliares)
+
+│  ├─ models/                   # Modelos/pipelines serializados (e.g., model.pkl)
+
+│  ├─ Orchestrator.py           # Orquestador de ETL → FE → train
+
+│  ├─ \_\_init\_\_.py
+
+│  ├─ backend.db                # DB/SQLite auxiliar (si aplica)
+
+│  ├─ etl.py                    # Extracción/limpieza y conformado del dataset base
+
+│  ├─ feature\_engineer.py       # Construcción de variables numéricas/categóricas
+
+│  ├─ task\_train.ipynb          # Notebook guía del proceso de entrenamiento
+
+│  ├─ train\_mlflow.py           # Entrenamiento básico + tracking MLflow
+
+│  └─ train\_mlflow\_advance.py   # Entrenamiento avanzado (p. ej., Optuna)
+
+└─ pred/
+
+├─ etl.py                    # Preparación de datos para scoring
+
+├─ feature\_engineer.py       # Misma lógica de FE para inferencia
+
+└─ (otros módulos de predicción)
+
+data/                               # Datos crudos/procesados
+
+notebooks/                          # EDA/otros notebooks
+
+reports/                            # Salidas, figuras o informes
+\---
 
 ## Resumen del Flujo
-1. **Data + ETL** → Traer y limpiar datos.  
-2. **Feature Engineering** → Transformarlos en variables útiles.  
-3. **Models** → Entrenar, evaluar y guardar modelos.  
-4. **Pipelines** → Orquestar todo el flujo.  
-5. **App** → Exponer el modelo vía API.  
-6. **Tests** → Garantizar calidad.  
-7. **Config** → Mantener orden y flexibilidad.
+## 🔄 Flujo end-to-end (`src/app/train/task\_train.ipynb`)
+
+1. **Ingesta y ETL (`etl.py`)**
+- Carga del histórico transaccional.
+- Limpieza de nulos/duplicados y estandarización de tipos.
+- Conformado de claves (cliente, factura, fecha/hora).
+
+2. **Feature Engineering (`feature\_engineer.py`)**
+
+- Variables \*\*numéricas\*\*: frecuencia, recencia, monetización, conteos/ratios.
+- Variables \*\*categóricas\*\*: banderas, \*bucketizaciones\*, etc.
+- Listas `numeric\_features` y `categorical\_features`.
+- Definición de la etiqueta binaria `y\_repurchase\_30d`.
+
+3. **División temporal**
+
+- Split \*\*por fechas\*\* (no aleatorio) para evitar \*leakage\*:
+- Fechas tipo `train\_end` / `valid\_end` / `cutoff`.
+- Evaluación por conjuntos \*\*train/test\*\* y verificación de \*base rates\*.
+
+4. **Entrenamiento con MLflow (`train\_mlflow.py`)**
+
+- Modelo base: `LogisticRegression(max\_iter=500)`.
+- Pipeline: `ColumnTransformer` (imputación + escalado + OHE) → clasificador.
+- Tracking MLflow: parámetros, métricas y artefactos.
+- Serialización del pipeline completo en `src/app/train/models/model.pkl` (+ `run\_id`).
+
+5. **Entrenamiento avanzado (`train\_mlflow\_advance.py`)**
+
+- Búsqueda de hiperparámetros (p. ej., \*\*Optuna\*\*: `solver`, `C`, regularización).
+- Registro de ejecuciones y artefactos en MLflow.
+- Serialización del mejor pipeline (p. ej., `models/modeloptuna.pkl`).
+
+## Decisiones de diseño
+
+- Split temporal estricto para simular despliegue real (evita data leakage).
+- Pipeline único (prepro + modelo) para garantizar paridad tren-serving.
+- MLflow para comparabilidad y gobernanza de experimentos.
+- Repos separados de train/ y pred/ para claridad operativa.
+- Serialización en models/ para facilitar CI/CD y deployment.
 
 
-## Definiciones Clave
+## 🗂️ Archivos clave
 
-### 🔹 ETL (Extract, Transform, Load)
-Proceso para traer datos desde su origen, limpiarlos y guardarlos en un formato estructurado.  
-- **Extract**: obtener datos desde archivos, BD o APIs.  
-- **Transform**: limpiar nulos, duplicados y estandarizar formatos.  
-- **Load**: guardar datos procesados listos para usar.  
+src/app/train/etl.py: limpieza y conformado del dataset base.
 
-### 🔹 Feature Engineering
-Proceso para transformar datos crudos en variables valiosas para el modelo.  
-- Codificación de categóricas.  
-- Escalado numérico.  
-- Creación de nuevas variables.  
-- Selección de características más relevantes.  
+src/app/train/feature_engineer.py: construcción de features y definición de listas de columnas.
+
+src/app/train/train_mlflow.py: entrenamiento con MLflow + guardado del pipeline.
+
+src/app/train/train_mlflow_advance.py: búsqueda/optimización + tracking.
+
+src/app/train/Orchestrator.py: orquestación end-to-end.
+
+src/app/train/models/: salida de modelos (model.pkl, etc.).
+
+src/app/train/task_train.ipynb: cuaderno guía del proceso de entrenamiento (misma lógica que los scripts).
 
