@@ -10,7 +10,7 @@
 ## Descripción General
 # ProyectoFinalMLOps
 
-Pipeline de MLOps para modelar \*\*recompra a 30 días\*\* (`y\_repurchase\_30d`) sobre el dataset de Online Retail. El proyecto incluye ETL, \*feature engineering\*, división temporal, entrenamiento trazable con MLflow, serialización del pipeline e inferencia por lotes.
+Pipeline de MLOps para modelar **recompra a 30 días** (`y\_repurchase\_30d`) sobre el dataset de Online Retail. El proyecto incluye ETL, \*feature engineering\*, división temporal, entrenamiento trazable con MLflow, serialización del pipeline e inferencia por lotes.
 
 Este proyecto lo organizamos en varias carpetas dentro de `src/`, cada una con un rol muy claro en el ciclo de vida del modelo.  
 La idea fue estructurarlo de manera que todo el flujo, desde que recibimos los datos hasta que el modelo está disponible en producción, quedara ordenado, fácil de reproducir y entendible para cualquier persona del equipo.
