@@ -20,7 +20,7 @@ La idea fue estructurarlo de manera que todo el flujo, desde que recibimos los d
 ## Estructura del Proyecto
 
 ### 📂 `src/app`
-El directorio src/ contiene todo el código de la aplicación (entrenamiento e inferencia) organizado para asegurar paridad tren-serving, trazabilidad con MLflow y fácil mantenimiento. 
+El directorio src/ contiene todo el código de la aplicación (entrenamiento e inferencia) organizado para asegurar trazabilidad con MLflow y fácil interacción entre los diferentes componentes del pipeline. 
 ---
 ## 📂 Estructura del repositorio
 
