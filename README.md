@@ -203,7 +203,11 @@ trainer.save_model("models/modeloptuna.pkl")
 <img width="921" height="335" alt="image" src="https://github.com/user-attachments/assets/42437eeb-5cc7-410b-a97a-e06de71caa65" />
 <img width="921" height="296" alt="image" src="https://github.com/user-attachments/assets/ad47696b-cea1-471e-bd7f-c5ad5df1cffc" />
 <img width="921" height="453" alt="image" src="https://github.com/user-attachments/assets/11a8fc30-350c-4660-9c1a-56fe19a65357" />
-<img width="921" height="427" alt="image" src="https://github.com/user-attachments/assets/61e957b7-7813-4a00-bc8a-79aaab5337c3" />
+<img width="1358" height="663" alt="image" src="https://github.com/user-attachments/assets/c929ae06-0100-4864-aaf4-52e0b818e489" />
+<img width="1355" height="662" alt="image" src="https://github.com/user-attachments/assets/9b870bac-0170-4781-b7dc-64a1cab77205" />
+<img width="1365" height="664" alt="image" src="https://github.com/user-attachments/assets/870bfe54-00bf-4c6d-8ee7-9adbc2b31379" />
+<img width="1355" height="663" alt="image" src="https://github.com/user-attachments/assets/ea632561-fdf6-4545-93d3-2bf89fee004b" />
+
 
 
 
