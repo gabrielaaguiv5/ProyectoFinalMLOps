@@ -18,7 +18,7 @@ from src.app.train.feature_engineer import FeatureEngineer
 from src.app.train.train_mlflow_advance import TrainOptuna  
 
 class PredictConfig(BaseModel):
-    model_path: str = os.path.join(REPO_ROOT, "models", "modeloptuna.pkl")
+    model_path: str = os.path.join(REPO_ROOT, "src", "app", "train", "models", "modeloptuna.pkl")
     threshold_path: Optional[str] = os.path.join(REPO_ROOT, "models", "threshold.joblib")
     out_csv_path: str = os.path.join(REPO_ROOT, "data", "predictions", "predictions_repurchase.csv")
     # estrategia de umbral: "fixed" | "topk" | "f1"
@@ -30,11 +30,12 @@ class PredictConfig(BaseModel):
 
 # Prefect
 @task
-def load_pipeline(cfg: PredictConfig):
+def load_pipeline(cfg):
     logger = get_run_logger()
     logger.info(f"Cargando pipeline desde: {cfg.model_path}")
-    pipe = joblib.load(cfg.model_path)
-    return pipe
+    if not os.path.exists(cfg.model_path):
+        raise FileNotFoundError(f"Modelo no encontrado en {cfg.model_path}")
+    return joblib.load(cfg.model_path)
 
 @task
 def build_inference_features():
@@ -196,25 +197,32 @@ def predict_batch_flow(
 
     pipe = load_pipeline.submit(cfg)
     df_features = build_inference_features.submit()
-    num_cols, cat_cols, feat_cols = extract_feat_cols_from_pipeline.submit(pipe)
+    cols_future = extract_feat_cols_from_pipeline.submit(pipe)   
+    num_cols, cat_cols, feat_cols = cols_future.result()
 
-    # Escoge umbral
-    t_star = choose_threshold.submit(cfg, pipe, df_features, num_cols, cat_cols)
+    pipe_f       = load_pipeline.submit(cfg)
+    df_feat_f    = build_inference_features.submit()
+    cols_f       = extract_feat_cols_from_pipeline.submit(pipe_f)
 
-    # Predice y guarda
-    out_path = score_and_save.submit(cfg, pipe, df_features, feat_cols, t_star)
+    pipe         = pipe_f.result()
+    df_features  = df_feat_f.result()
+    num_cols, cat_cols, feat_cols = cols_f.result()
 
-    # Log en MLflow
+    t_star_f     = choose_threshold.submit(cfg, pipe, df_features, num_cols, cat_cols)
+    t_star       = t_star_f.result()
+
+    out_path_f   = score_and_save.submit(cfg, pipe, df_features, feat_cols, t_star)
+    out_path     = out_path_f.result()
+
     if cfg.mlflow_log:
         mlflow_log_inference.submit(
             cfg,
             model_path=cfg.model_path,
             threshold=t_star,
-            n_scored=df_features.result().shape[0],  
+            n_scored=df_features.shape[0],   
             artifact_path=out_path
         )
-
-    return out_path
+        return out_path
 
 # Ejecutable local
 if __name__ == "__main__":
