@@ -53,9 +53,19 @@ class UserGenerator:
         return self.df
 
     def run_etl(self) -> pd.DataFrame:
-        self.date_tipo()
-        self.limpieza_datos()
-        return self.df
+        df = self.create_dataset().copy()
+
+        # parse & basic cleaning
+        df["InvoiceDate"] = pd.to_datetime(df["InvoiceDate"], errors="coerce")
+        df = df[df["Quantity"] > 0]
+        df = df[df["UnitPrice"] > 0]
+        df = df[df["CustomerID"].notna()]
+        df["CustomerID"] = df["CustomerID"].astype(int)
+
+        df = self.descripcion_tipo(df) # text normalization
+
+        self.df = df
+        return self
     
         
 
