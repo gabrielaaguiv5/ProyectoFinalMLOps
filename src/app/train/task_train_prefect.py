@@ -127,7 +127,18 @@ def choose_threshold(cfg: PredictConfig, pipe, df_features: pd.DataFrame, num_co
         t_star = float(thr[int(np.argmax(f1s))])
     else:
         t_star = 0.5
+    
+    if t_star <= 1e-6:
+    # fallback razonable si la clase positiva domina
+        t_star = 0.5    
+
     logger.info(f"Umbral por F1 óptimo en test: t={t_star:.4f}")
+
+    if cfg.save_threshold_if_f1:
+        os.makedirs(os.path.join(REPO_ROOT, "models"), exist_ok=True)
+        joblib.dump({"decision_threshold": t_star},
+                os.path.join(REPO_ROOT, "models", "threshold.joblib"),
+                compress=3)
 
     if cfg.save_threshold_if_f1:
         os.makedirs(os.path.join(REPO_ROOT, "models"), exist_ok=True)
@@ -174,6 +185,26 @@ def mlflow_log_inference(cfg: PredictConfig, model_path: str, threshold: float, 
         logger.info(f"Batch scoring loggeado en MLflow ({mlflow.get_tracking_uri()})")
     except Exception as e:
         logger.warning(f"No se pudo loggear en MLflow: {e}")
+@task
+def mlflow_log_inference(cfg, model_path: str, threshold: float, n_scored: int, artifact_path: str):
+    """Log the batch inference run to MLflow."""
+    import os
+    import mlflow
+    log = get_run_logger()
+    try:
+        mlflow.set_tracking_uri("http://127.0.0.1:5000")
+        mlflow.set_experiment("batch_predict")
+        with mlflow.start_run(run_name="batch_predict"):
+            mlflow.log_param("stage", "batch_inference")
+            mlflow.log_param("model_path", model_path)
+            mlflow.log_param("threshold", float(threshold))
+            mlflow.log_param("n_scored", int(n_scored))
+            if artifact_path and os.path.exists(artifact_path):
+                mlflow.log_artifact(artifact_path)
+        log.info("Batch scoring logged to MLflow.")
+    except Exception as e:
+        log.warning(f"Could not log to MLflow: {e}")
+
 
 @flow(name="predict-batch")
 def predict_batch_flow(
@@ -188,41 +219,30 @@ def predict_batch_flow(
     Ejecuta el flujo de predicción en batch con overrides opcionales.
     """
     cfg = PredictConfig()
-    if model_path: cfg.model_path = model_path
-    if threshold_policy: cfg.threshold_policy = threshold_policy  # "fixed" | "topk" | "f1"
-    if fixed_threshold is not None: cfg.fixed_threshold = fixed_threshold
-    if topk_rate is not None: cfg.topk_rate = topk_rate
-    if out_csv_path: cfg.out_csv_path = out_csv_path
-    if mlflow_log is not None: cfg.mlflow_log = mlflow_log
+    # Submit ONCE, keep the futures
+    pipe_fut        = load_pipeline.submit(cfg)
+    df_feat_fut     = build_inference_features.submit()
+    cols_fut        = extract_feat_cols_from_pipeline.submit(pipe_fut)
 
-    pipe = load_pipeline.submit(cfg)
-    df_features = build_inference_features.submit()
-    cols_future = extract_feat_cols_from_pipeline.submit(pipe)   
-    num_cols, cat_cols, feat_cols = cols_future.result()
+    # Unpack the tuple returned by cols_fut
+    num_cols, cat_cols, feat_cols = cols_fut.result()
 
-    pipe_f       = load_pipeline.submit(cfg)
-    df_feat_f    = build_inference_features.submit()
-    cols_f       = extract_feat_cols_from_pipeline.submit(pipe_f)
-
-    pipe         = pipe_f.result()
-    df_features  = df_feat_f.result()
-    num_cols, cat_cols, feat_cols = cols_f.result()
-
-    t_star_f     = choose_threshold.submit(cfg, pipe, df_features, num_cols, cat_cols)
-    t_star       = t_star_f.result()
-
-    out_path_f   = score_and_save.submit(cfg, pipe, df_features, feat_cols, t_star)
-    out_path     = out_path_f.result()
+    # Reuse the SAME df_feat_fut future everywhere (do NOT resubmit the task)
+    t_star_fut = choose_threshold.submit(cfg, pipe_fut, df_feat_fut, num_cols, cat_cols)
+    out_path_fut = score_and_save.submit(cfg, pipe_fut, df_feat_fut, feat_cols, t_star_fut)
 
     if cfg.mlflow_log:
+        # Reuse df_feat_fut and resolve to get the row count
+        n_scored = int(df_feat_fut.result().shape[0])
         mlflow_log_inference.submit(
             cfg,
             model_path=cfg.model_path,
-            threshold=t_star,
-            n_scored=df_features.shape[0],   
-            artifact_path=out_path
+            threshold=t_star_fut,       # can pass future here
+            n_scored=n_scored,          # resolved value
+            artifact_path=out_path_fut  # future is OK
         )
-        return out_path
+
+    return out_path_fut
 
 # Ejecutable local
 if __name__ == "__main__":
