@@ -64,8 +64,7 @@ class UserGenerator:
 
         df = self.descripcion_tipo(df) # text normalization
 
-        self.df = df
-        return self
+        return self.df
     
         
 
