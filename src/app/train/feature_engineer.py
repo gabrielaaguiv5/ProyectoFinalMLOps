@@ -46,11 +46,12 @@ class FeatureEngineer:
         return cp
 
     def historial_compra_cliente(self) -> pd.DataFrame:
-        if self.df is None: raise ValueError("Primero llama a set_df(df).")
+        if self.df is None:
+            raise ValueError("Primero llama a set_df(df).")
         out = (
             self.df.groupby("CustomerID", group_keys=False)
-                   .apply(self.historial_compra)   # <-- ahora acepta g
-                   .reset_index(drop=True)
+                .apply(self.historial_compra, include_groups=False)   # 👈 add this arg
+                .reset_index(drop=True)
         )
         self.df = out
         return self.df

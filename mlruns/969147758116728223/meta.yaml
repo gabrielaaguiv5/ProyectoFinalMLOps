@@ -1,0 +1,6 @@
+artifact_location: file:///C:\Users\gabri\OneDrive\ProyectoFinalMLOps\mlruns/969147758116728223
+creation_time: 1759102396424
+experiment_id: '969147758116728223'
+last_update_time: 1759102396424
+lifecycle_stage: active
+name: batch_predict
