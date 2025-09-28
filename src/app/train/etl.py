@@ -55,16 +55,25 @@ class UserGenerator:
     def run_etl(self) -> pd.DataFrame:
         df = self.create_dataset().copy()
 
-        # parse & basic cleaning
-        df["InvoiceDate"] = pd.to_datetime(df["InvoiceDate"], errors="coerce")
-        df = df[df["Quantity"] > 0]
-        df = df[df["UnitPrice"] > 0]
+        # 1) parse dates in UK format and drop bad ones
+        df["InvoiceDate"] = pd.to_datetime(df["InvoiceDate"], errors="coerce", dayfirst=True)
+        df = df[df["InvoiceDate"].notna()]
+
+        # 2) numeric coercions BEFORE filtering
+        df["Quantity"]  = pd.to_numeric(df["Quantity"],  errors="coerce")
+        df["UnitPrice"] = pd.to_numeric(df["UnitPrice"], errors="coerce")
+        df["CustomerID"] = pd.to_numeric(df["CustomerID"], errors="coerce")
+
+        df = df[(df["Quantity"] > 0) & (df["UnitPrice"] > 0)]
         df = df[df["CustomerID"].notna()]
         df["CustomerID"] = df["CustomerID"].astype(int)
 
-        df = self.descripcion_tipo(df) # text normalization
+        # 3) description normalization (make sure this function RETURNS df)
+        df = self.descripcion_tipo(df)  # if this mutates self.df instead, call self.descripcion_tipo() and skip the assignment
 
+        self.df = df
         return self.df
+
     
         
 
