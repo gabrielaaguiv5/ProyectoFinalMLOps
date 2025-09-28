@@ -33,15 +33,15 @@ class UserGenerator:
         self.df = self.df.dropna(subset=["InvoiceDate"])
         return self.df
     
-    def descripcion_tipo(self) -> pd.DataFrame:
-        if self.df is None: raise ValueError("Llama primero a create_dataset().")
-        self.df["Description"] = (
-            self.df["Description"]
+    def descripcion_tipo(self, df) -> pd.DataFrame:
+        if df is None: raise ValueError("Llama primero a create_dataset().")
+        df["Description"] = (
+            df["Description"]
               .astype("string")           
               .str.strip()
               .str.replace(r"\s+", " ", regex=True)
         )
-        return self.df
+        return df
 
     def limpieza_datos(self) -> pd.DataFrame:
         if self.df is None: raise ValueError("Llama primero a create_dataset().")
