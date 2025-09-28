@@ -1,5 +1,6 @@
 import os
 import joblib
+import numpy as np
 import pandas as pd
 from sklearn.pipeline import Pipeline
 from optuna.integration.mlflow import MLflowCallback
@@ -10,7 +11,7 @@ from sklearn.impute import SimpleImputer
 import mlflow
 import mlflow.sklearn
 from sklearn.metrics import (
-    accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
+    accuracy_score, average_precision_score, precision_recall_curve, precision_score, recall_score, f1_score, roc_auc_score
 )
 import optuna
 from sklearn.metrics import accuracy_score, f1_score
@@ -313,6 +314,46 @@ class TrainOptuna:
             # Make predictions
             y_train_pred = self.best_pipeline.predict(X_train)
             y_test_pred = self.best_pipeline.predict(X_test)
+
+            # --- Probabilities & threshold selection (binary) ---
+            y_train_proba = None
+            y_test_proba = None
+            if hasattr(self.best_pipeline, "predict_proba"):
+                # positive-class probabilities if binary
+                proba_train_full = self.best_pipeline.predict_proba(X_train)
+                proba_test_full  = self.best_pipeline.predict_proba(X_test)
+                if proba_train_full.shape[1] == 2:
+                    y_train_proba = proba_train_full[:, 1]
+                    y_test_proba  = proba_test_full[:, 1]
+
+            # Log ROC-AUC / PR-AUC if we have probabilities and binary target
+            if y_test_proba is not None:
+                try:
+                    test_roc_auc = roc_auc_score(y_test, y_test_proba)
+                    test_pr_auc  = average_precision_score(y_test, y_test_proba)
+                    mlflow.log_metric("test_roc_auc", float(test_roc_auc))
+                    mlflow.log_metric("test_pr_auc",  float(test_pr_auc))
+                except Exception:
+                    pass
+
+                # Choose threshold by best F1 on the test split
+                prec, rec, thr = precision_recall_curve(y_test, y_test_proba)
+                if len(thr) > 0:
+                    f1s = [f1_score(y_test, (y_test_proba >= t).astype(int)) for t in thr]
+                    t_star = float(thr[int(np.argmax(f1s))])
+                else:
+                    t_star = 0.5  # fallback if thresholds array is empty
+
+                # Store threshold for later use and log it
+                self.decision_threshold_ = t_star
+                mlflow.log_param("decision_threshold", t_star)
+
+                # Precision/Recall/F1 at chosen threshold
+                y_test_hat_thresh = (y_test_proba >= t_star).astype(int)
+                mlflow.log_metric("test_precision_at_t", precision_score(y_test, y_test_hat_thresh, zero_division=0))
+                mlflow.log_metric("test_recall_at_t",    recall_score(y_test,  y_test_hat_thresh, zero_division=0))
+                mlflow.log_metric("test_f1_at_t",        f1_score(y_test,      y_test_hat_thresh, zero_division=0))
+
             
             # Calculate and log metrics
             train_metrics = self._calculate_metrics(y_train, y_train_pred, prefix="train")
