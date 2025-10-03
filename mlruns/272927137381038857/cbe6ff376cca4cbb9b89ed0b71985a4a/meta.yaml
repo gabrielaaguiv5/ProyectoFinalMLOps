@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/cbe6ff376cca4cbb9b89ed0b71985a4a/artifacts
+end_time: 1759452165529
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: cbe6ff376cca4cbb9b89ed0b71985a4a
+run_name: unleashed-owl-838
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759452153906
+status: 3
+tags: []
+user_id: gabri

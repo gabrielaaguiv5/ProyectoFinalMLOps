@@ -1,0 +1,2 @@
+LogisticRegression(C=0.046735694842887636, class_weight='balanced',
+                   max_iter=1019)

@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/5327b0deab7c40b7a44b90a18e3a55fc/artifacts
+end_time: 1759451884974
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: 5327b0deab7c40b7a44b90a18e3a55fc
+run_name: rumbling-fawn-6
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759451857932
+status: 3
+tags: []
+user_id: gabri

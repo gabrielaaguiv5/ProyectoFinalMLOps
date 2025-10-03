@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/65a53abf74a748018734283551cb7179/artifacts
+end_time: 1759452121416
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: 65a53abf74a748018734283551cb7179
+run_name: monumental-stoat-7
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759452112949
+status: 3
+tags: []
+user_id: gabri

@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/3eac8c2f118149729721192d2adc3584/artifacts
+end_time: 1759452250794
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: 3eac8c2f118149729721192d2adc3584
+run_name: placid-shrew-772
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759452238510
+status: 3
+tags: []
+user_id: gabri

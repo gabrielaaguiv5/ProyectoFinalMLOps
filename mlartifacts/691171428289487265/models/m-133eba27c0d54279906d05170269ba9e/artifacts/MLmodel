@@ -1,0 +1,40 @@
+artifact_path: mlflow-artifacts:/691171428289487265/models/m-133eba27c0d54279906d05170269ba9e/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.13.2
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.7.2
+is_signature_from_type_hint: false
+mlflow_version: 3.4.0
+model_id: m-133eba27c0d54279906d05170269ba9e
+model_size_bytes: 5794
+model_uuid: m-133eba27c0d54279906d05170269ba9e
+prompts: null
+run_id: 5239b177003c466993101825ad4b2c1c
+saved_input_example_info:
+  artifact_path: input_example.json
+  pandas_orient: split
+  serving_input_path: serving_input_example.json
+  type: dataframe
+signature:
+  inputs: '[{"type": "long", "name": "recency_days", "required": true}, {"type": "long",
+    "name": "n_past_invoices", "required": true}, {"type": "double", "name": "spend_prior",
+    "required": true}, {"type": "long", "name": "qty_prior", "required": true}, {"type":
+    "double", "name": "avg_ticket_prior", "required": true}, {"type": "double", "name":
+    "avg_qty_per_invoice_prior", "required": true}, {"type": "double", "name": "UnitPrice",
+    "required": true}, {"type": "long", "name": "Quantity", "required": true}, {"type":
+    "double", "name": "Revenue", "required": true}, {"type": "string", "name": "Country",
+    "required": true}]'
+  outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "int64", "shape": [-1]}}]'
+  params: null
+type_hint_from_example: false
+utc_time_created: '2025-10-03 00:28:10.806890'

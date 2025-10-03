@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/3a5b9466e3a64b30a62993f11b68f750/artifacts
+end_time: 1759452140732
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: 3a5b9466e3a64b30a62993f11b68f750
+run_name: skittish-sheep-239
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759452132093
+status: 3
+tags: []
+user_id: gabri

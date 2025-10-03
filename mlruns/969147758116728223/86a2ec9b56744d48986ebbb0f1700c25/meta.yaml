@@ -1,0 +1,14 @@
+artifact_uri: file:///C:\Users\gabri\OneDrive\ProyectoFinalMLOps\mlruns/969147758116728223/86a2ec9b56744d48986ebbb0f1700c25/artifacts
+end_time: 1759448455603
+entry_point_name: ''
+experiment_id: '969147758116728223'
+lifecycle_stage: active
+run_id: 86a2ec9b56744d48986ebbb0f1700c25
+run_name: batch_predict
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759448455077
+status: 3
+tags: []
+user_id: gabri

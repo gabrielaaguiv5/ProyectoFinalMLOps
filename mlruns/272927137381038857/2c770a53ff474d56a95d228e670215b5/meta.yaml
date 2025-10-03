@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/2c770a53ff474d56a95d228e670215b5/artifacts
+end_time: 1759452195898
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: 2c770a53ff474d56a95d228e670215b5
+run_name: bedecked-conch-867
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759452179710
+status: 3
+tags: []
+user_id: gabri

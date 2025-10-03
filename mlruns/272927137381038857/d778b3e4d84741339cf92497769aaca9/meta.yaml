@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/d778b3e4d84741339cf92497769aaca9/artifacts
+end_time: 1759452178205
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: d778b3e4d84741339cf92497769aaca9
+run_name: dashing-lamb-329
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759452166368
+status: 3
+tags: []
+user_id: gabri

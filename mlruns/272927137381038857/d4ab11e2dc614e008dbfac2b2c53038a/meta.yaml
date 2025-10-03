@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/d4ab11e2dc614e008dbfac2b2c53038a/artifacts
+end_time: 1759451669911
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: d4ab11e2dc614e008dbfac2b2c53038a
+run_name: bedecked-dolphin-677
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759451653551
+status: 3
+tags: []
+user_id: gabri

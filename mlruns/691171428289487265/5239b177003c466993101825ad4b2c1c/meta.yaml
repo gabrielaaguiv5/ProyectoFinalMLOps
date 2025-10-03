@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/691171428289487265/5239b177003c466993101825ad4b2c1c/artifacts
+end_time: 1759451374590
+entry_point_name: ''
+experiment_id: '691171428289487265'
+lifecycle_stage: active
+run_id: 5239b177003c466993101825ad4b2c1c
+run_name: defiant-auk-345
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759451284369
+status: 3
+tags: []
+user_id: gabri

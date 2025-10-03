@@ -1,0 +1,6 @@
+artifact_location: mlflow-artifacts:/272927137381038857
+creation_time: 1759451460713
+experiment_id: '272927137381038857'
+last_update_time: 1759451460713
+lifecycle_stage: active
+name: optuna_LogisticRegression

@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/fe6b91b7c3e44760ac642fae6792049c/artifacts
+end_time: 1759452225973
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: fe6b91b7c3e44760ac642fae6792049c
+run_name: smiling-sow-138
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759452212411
+status: 3
+tags: []
+user_id: gabri

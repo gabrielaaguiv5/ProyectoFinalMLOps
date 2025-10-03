@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/0efe3345729e4aafb44c749397576d62/artifacts
+end_time: 1759452261922
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: 0efe3345729e4aafb44c749397576d62
+run_name: delicate-boar-427
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759452251852
+status: 3
+tags: []
+user_id: gabri

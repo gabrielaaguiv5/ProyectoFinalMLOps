@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/bb185d572bfc4b2abbd3f4da34dee65e/artifacts
+end_time: 1759451687809
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: bb185d572bfc4b2abbd3f4da34dee65e
+run_name: melodic-crab-181
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759451672015
+status: 3
+tags: []
+user_id: gabri

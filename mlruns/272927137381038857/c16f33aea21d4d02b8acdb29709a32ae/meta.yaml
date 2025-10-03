@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/c16f33aea21d4d02b8acdb29709a32ae/artifacts
+end_time: 1759452237575
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: c16f33aea21d4d02b8acdb29709a32ae
+run_name: judicious-fox-199
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759452226689
+status: 3
+tags: []
+user_id: gabri

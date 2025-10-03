@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/2e855c708a6a49feb10d049bf716f84a/artifacts
+end_time: 1759451614630
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: 2e855c708a6a49feb10d049bf716f84a
+run_name: shivering-wren-798
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759451590039
+status: 3
+tags: []
+user_id: gabri
