@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/651266d369b348d58ef511b1c5afe91d/artifacts
+end_time: 1759679047031
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: 651266d369b348d58ef511b1c5afe91d
+run_name: angry-shad-292
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759679039347
+status: 3
+tags: []
+user_id: gabri

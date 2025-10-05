@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/017cee449a24429e9f7c8a8d9bee8413/artifacts
+end_time: 1759679127449
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: 017cee449a24429e9f7c8a8d9bee8413
+run_name: grandiose-crane-700
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759679118571
+status: 3
+tags: []
+user_id: gabri

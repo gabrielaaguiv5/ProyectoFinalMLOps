@@ -1,0 +1,14 @@
+digest: 36e7afe8
+name: dataset
+profile: '{"num_rows": 164094, "num_elements": 1640940}'
+schema: '{"mlflow_colspec": [{"type": "long", "name": "recency_days", "required":
+  true}, {"type": "long", "name": "n_past_invoices", "required": true}, {"type": "double",
+  "name": "spend_prior", "required": true}, {"type": "long", "name": "qty_prior",
+  "required": true}, {"type": "double", "name": "avg_ticket_prior", "required": true},
+  {"type": "double", "name": "avg_qty_per_invoice_prior", "required": true}, {"type":
+  "double", "name": "UnitPrice", "required": true}, {"type": "long", "name": "Quantity",
+  "required": true}, {"type": "double", "name": "Revenue", "required": true}, {"type":
+  "string", "name": "Country", "required": true}]}'
+source: '{"tags": {"mlflow.user": "gabri", "mlflow.source.name": "src/app/train/task_train_prefect.py",
+  "mlflow.source.type": "LOCAL", "mlflow.source.git.commit": "3bfa363c399528ee29ca422c38ac72725ee5eac3"}}'
+source_type: code

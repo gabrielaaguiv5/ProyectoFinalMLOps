@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/047f533b18da4500bbcf90b87c80aae3/artifacts
+end_time: 1759679386915
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: 047f533b18da4500bbcf90b87c80aae3
+run_name: able-gull-308
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759679375592
+status: 3
+tags: []
+user_id: gabri

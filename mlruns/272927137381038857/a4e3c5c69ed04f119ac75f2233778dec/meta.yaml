@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/a4e3c5c69ed04f119ac75f2233778dec/artifacts
+end_time: 1759679070994
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: a4e3c5c69ed04f119ac75f2233778dec
+run_name: orderly-hound-271
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759679063801
+status: 3
+tags: []
+user_id: gabri

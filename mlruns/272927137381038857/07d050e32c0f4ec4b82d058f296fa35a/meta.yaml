@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/07d050e32c0f4ec4b82d058f296fa35a/artifacts
+end_time: 1759679351621
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: 07d050e32c0f4ec4b82d058f296fa35a
+run_name: powerful-crow-318
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759679337114
+status: 3
+tags: []
+user_id: gabri

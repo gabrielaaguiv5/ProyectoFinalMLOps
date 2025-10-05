@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/de8117ed6e2740ecbb9bb19ad831c32f/artifacts
+end_time: 1759679202846
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: de8117ed6e2740ecbb9bb19ad831c32f
+run_name: fortunate-quail-155
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759679190845
+status: 3
+tags: []
+user_id: gabri

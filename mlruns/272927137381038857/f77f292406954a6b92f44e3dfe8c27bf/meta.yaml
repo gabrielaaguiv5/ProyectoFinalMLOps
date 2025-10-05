@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/f77f292406954a6b92f44e3dfe8c27bf/artifacts
+end_time: 1759678967266
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: f77f292406954a6b92f44e3dfe8c27bf
+run_name: delicate-dolphin-1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759678959391
+status: 3
+tags: []
+user_id: gabri

@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/4fb4efbdabce4ce5bb1204561a33d2c7/artifacts
+end_time: 1759679532232
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: 4fb4efbdabce4ce5bb1204561a33d2c7
+run_name: placid-fly-462
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759679522316
+status: 3
+tags: []
+user_id: gabri

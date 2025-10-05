@@ -1,0 +1,15 @@
+{
+  "metric": "roc_auc",
+  "best_score": 0.6493756703541205,
+  "baseline_score": 0.6210766764859262,
+  "improved": true,
+  "mlflow_run_id": "0625ff037ca241a0956365de6ce6da66",
+  "best_params": {
+    "solver": "liblinear",
+    "C": 0.024981579056280682,
+    "max_iter": 797,
+    "class_weight": "balanced",
+    "penalty": "l2"
+  },
+  "saved_model_path": "C:\\Users\\gabri\\OneDrive\\ProyectoFinalMLOps\\models\\modeloptuna.pkl"
+}

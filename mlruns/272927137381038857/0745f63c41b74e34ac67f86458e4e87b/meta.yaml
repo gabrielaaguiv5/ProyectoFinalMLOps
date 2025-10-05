@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/0745f63c41b74e34ac67f86458e4e87b/artifacts
+end_time: 1759678958854
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: 0745f63c41b74e34ac67f86458e4e87b
+run_name: languid-foal-21
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759678951677
+status: 3
+tags: []
+user_id: gabri

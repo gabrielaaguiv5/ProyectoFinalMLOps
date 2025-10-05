@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/21936f757a8c49f695b879668c8cb162/artifacts
+end_time: 1759679150435
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: 21936f757a8c49f695b879668c8cb162
+run_name: gentle-dove-159
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759679139464
+status: 3
+tags: []
+user_id: gabri

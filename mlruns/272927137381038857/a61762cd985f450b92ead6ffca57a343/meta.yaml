@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/a61762cd985f450b92ead6ffca57a343/artifacts
+end_time: 1759679521608
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: a61762cd985f450b92ead6ffca57a343
+run_name: upbeat-quail-421
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759679496453
+status: 3
+tags: []
+user_id: gabri

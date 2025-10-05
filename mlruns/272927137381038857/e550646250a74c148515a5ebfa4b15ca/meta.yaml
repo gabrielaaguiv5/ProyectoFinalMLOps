@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/e550646250a74c148515a5ebfa4b15ca/artifacts
+end_time: 1759679362926
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: e550646250a74c148515a5ebfa4b15ca
+run_name: painted-fowl-441
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759679352768
+status: 3
+tags: []
+user_id: gabri

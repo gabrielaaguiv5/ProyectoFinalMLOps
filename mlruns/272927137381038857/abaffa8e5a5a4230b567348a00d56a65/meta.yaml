@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/abaffa8e5a5a4230b567348a00d56a65/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: abaffa8e5a5a4230b567348a00d56a65
+run_name: overjoyed-newt-48
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759679792127
+status: 1
+tags: []
+user_id: gabri

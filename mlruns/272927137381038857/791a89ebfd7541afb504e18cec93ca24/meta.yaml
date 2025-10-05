@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/791a89ebfd7541afb504e18cec93ca24/artifacts
+end_time: 1759679189768
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: 791a89ebfd7541afb504e18cec93ca24
+run_name: gentle-hen-928
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759679175119
+status: 3
+tags: []
+user_id: gabri
