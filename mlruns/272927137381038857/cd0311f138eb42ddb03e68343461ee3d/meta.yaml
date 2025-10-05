@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/cd0311f138eb42ddb03e68343461ee3d/artifacts
+end_time: 1759683257784
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: cd0311f138eb42ddb03e68343461ee3d
+run_name: popular-calf-357
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759683247817
+status: 3
+tags: []
+user_id: gabri

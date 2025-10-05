@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/550111da7ee94205ba475f06722610c3/artifacts
+end_time: 1759683353743
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: 550111da7ee94205ba475f06722610c3
+run_name: defiant-ram-38
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759683344866
+status: 3
+tags: []
+user_id: gabri

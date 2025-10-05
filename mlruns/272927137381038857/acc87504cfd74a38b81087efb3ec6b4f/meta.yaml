@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/acc87504cfd74a38b81087efb3ec6b4f/artifacts
+end_time: 1759683444211
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: acc87504cfd74a38b81087efb3ec6b4f
+run_name: '23'
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759683444027
+status: 3
+tags: []
+user_id: gabri

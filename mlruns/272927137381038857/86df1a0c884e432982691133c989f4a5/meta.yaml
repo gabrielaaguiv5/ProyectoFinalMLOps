@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/86df1a0c884e432982691133c989f4a5/artifacts
+end_time: 1759683391385
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: 86df1a0c884e432982691133c989f4a5
+run_name: crawling-cat-681
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759683383282
+status: 3
+tags: []
+user_id: gabri

@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/39190021886c4e0185a07047f03f9624/artifacts
+end_time: 1759683443893
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: 39190021886c4e0185a07047f03f9624
+run_name: salty-hare-427
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759683435468
+status: 3
+tags: []
+user_id: gabri

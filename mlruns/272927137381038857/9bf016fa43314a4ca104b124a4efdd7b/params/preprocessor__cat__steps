@@ -1,0 +1,1 @@
+[('imputer', SimpleImputer(fill_value='Unknown', strategy='constant')), ('onehot', OneHotEncoder(drop='first', handle_unknown='ignore', sparse_output=False))]

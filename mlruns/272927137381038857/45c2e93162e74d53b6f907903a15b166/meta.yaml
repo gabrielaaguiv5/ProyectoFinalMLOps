@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/45c2e93162e74d53b6f907903a15b166/artifacts
+end_time: 1759683335334
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: 45c2e93162e74d53b6f907903a15b166
+run_name: gifted-hog-939
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759683328369
+status: 3
+tags: []
+user_id: gabri

@@ -1,0 +1,1 @@
+[('num', StandardScaler(), ['recency_days', 'n_past_invoices', 'spend_prior', 'qty_prior', 'avg_ticket_prior', 'avg_qty_per_invoice_prior', 'UnitPrice', 'Quantity', 'Revenue']), ('cat', OneHotEncoder(handle_unknown='ignore'), ['Country'])]

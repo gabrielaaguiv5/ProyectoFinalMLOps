@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/0afe6da2168d4f8ca1b650477c93e6dc/artifacts
+end_time: 1759683382982
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: 0afe6da2168d4f8ca1b650477c93e6dc
+run_name: bright-panda-905
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759683377751
+status: 3
+tags: []
+user_id: gabri

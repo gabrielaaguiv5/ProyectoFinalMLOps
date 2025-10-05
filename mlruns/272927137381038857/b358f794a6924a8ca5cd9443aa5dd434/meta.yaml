@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/b358f794a6924a8ca5cd9443aa5dd434/artifacts
+end_time: 1759683476412
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: b358f794a6924a8ca5cd9443aa5dd434
+run_name: victorious-steed-656
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759683467161
+status: 3
+tags: []
+user_id: gabri

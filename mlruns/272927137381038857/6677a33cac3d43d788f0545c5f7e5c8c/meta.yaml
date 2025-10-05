@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/6677a33cac3d43d788f0545c5f7e5c8c/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: 6677a33cac3d43d788f0545c5f7e5c8c
+run_name: nervous-deer-822
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759683505612
+status: 1
+tags: []
+user_id: gabri

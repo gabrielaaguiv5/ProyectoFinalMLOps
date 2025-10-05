@@ -1,0 +1,2 @@
+LogisticRegression(C=0.011576080292716392, class_weight='balanced',
+                   max_iter=660, solver='liblinear')

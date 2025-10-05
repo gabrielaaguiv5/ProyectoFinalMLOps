@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/3cb76fd7c8ea4b36a34334528420da68/artifacts
+end_time: 1759683483361
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: 3cb76fd7c8ea4b36a34334528420da68
+run_name: luxuriant-loon-230
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759683476657
+status: 3
+tags: []
+user_id: gabri

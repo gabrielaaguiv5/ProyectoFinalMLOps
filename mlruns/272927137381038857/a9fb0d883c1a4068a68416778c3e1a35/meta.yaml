@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/a9fb0d883c1a4068a68416778c3e1a35/artifacts
+end_time: 1759683412342
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: a9fb0d883c1a4068a68416778c3e1a35
+run_name: omniscient-shrew-535
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759683405662
+status: 3
+tags: []
+user_id: gabri

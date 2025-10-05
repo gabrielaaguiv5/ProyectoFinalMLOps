@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/9bf016fa43314a4ca104b124a4efdd7b/artifacts
+end_time: 1759683423715
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: 9bf016fa43314a4ca104b124a4efdd7b
+run_name: chill-snake-458
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759683412579
+status: 3
+tags: []
+user_id: gabri

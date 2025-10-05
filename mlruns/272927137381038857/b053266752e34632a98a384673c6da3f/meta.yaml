@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/b053266752e34632a98a384673c6da3f/artifacts
+end_time: 1759683263648
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: b053266752e34632a98a384673c6da3f
+run_name: bright-jay-853
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759683258107
+status: 3
+tags: []
+user_id: gabri
