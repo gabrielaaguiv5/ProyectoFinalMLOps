@@ -144,8 +144,6 @@ def train_baseline(df: pd.DataFrame, cfg: FlowCfg, num_cols: List[str], cat_cols
     Refuerza configuración de MLflow dentro del task.
     """
     log = get_run_logger()
-
-    # Asegura configuración de MLflow también aquí
     try:
         mlflow.set_tracking_uri(cfg.tracking_uri_http)
         mlflow.set_experiment(cfg.experiment_baseline)
@@ -199,8 +197,6 @@ def train_optuna(df: pd.DataFrame, cfg: FlowCfg, num_cols: List[str], cat_cols: 
     Compatible con TrainOptuna que NO tenga random_state en __init__.
     """
     log = get_run_logger()
-
-    # Asegura experimento de Optuna activo
     try:
         mlflow.set_tracking_uri(cfg.tracking_uri_http)
         mlflow.set_experiment(cfg.experiment_optuna)
@@ -222,7 +218,6 @@ def train_optuna(df: pd.DataFrame, cfg: FlowCfg, num_cols: List[str], cat_cols: 
         optimization_metric=cfg.optimization_metric,
         param_distributions=cfg.param_distributions,
     )
-    # Añade random_state solo si está soportado
     try:
         if "random_state" in inspect.signature(TrainOptuna).parameters:
             kwargs["random_state"] = cfg.random_state
@@ -231,7 +226,6 @@ def train_optuna(df: pd.DataFrame, cfg: FlowCfg, num_cols: List[str], cat_cols: 
 
     trainer = TrainOptuna(**kwargs)
 
-    # API tipo notebook: (best_pipeline, best_run_id, study)
     best_pipeline, best_run_id, study = trainer.train()
     best_score = getattr(study, "best_value", None)
     best_params = getattr(study, "best_params", {})
@@ -287,17 +281,14 @@ def persist_and_verify(
     with open(cfg.best_params_path, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
 
-    # Trials CSV (si existe)
     if isinstance(results.get("study_df"), pd.DataFrame) and not results["study_df"].empty:
         results["study_df"].to_csv(cfg.study_csv_path, index=False, encoding="utf-8")
 
-    # Trazas en MLflow del artefacto final (por si hay un run activo)
     try:
         mlflow.log_param("artifact_model_path", saved_model_path or "")
         mlflow.set_tag("artifact_model_path", saved_model_path or "")
         mlflow.set_tag("improved_vs_baseline", str(bool(saved_model_path)))
     except Exception:
-        # Puede no haber run activo aquí; no es crítico.
         pass
 
     return {
@@ -331,12 +322,12 @@ def train_with_optuna_flow(
     setup_baseline = setup_mlflow_and_autolog.submit(cfg, cfg.experiment_baseline)
     setup_baseline.result()  # wait to guarantee experiment exists
 
-    # 3) Baseline (optional)
+    # 3) Baseline
     baseline_info = {"cv_score": None, "model_path": None}
     if cfg.run_baseline:
         baseline_info = train_baseline.submit(df, cfg, num_cols, cat_cols).result()
 
-    # (Optional) ensure Optuna experiment exists too
+    # Optuna validación
     setup_optuna = setup_mlflow_and_autolog.submit(cfg, cfg.experiment_optuna)
     setup_optuna.result()  # safe even if autolog already enabled
 

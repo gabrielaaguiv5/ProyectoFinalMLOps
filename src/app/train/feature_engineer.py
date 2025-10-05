@@ -24,7 +24,6 @@ class FeatureEngineer:
         - Si no existe: agrupa por fecha exacta de la factura (redondeada a minuto) para aproximar una visita.
         """
         if "InvoiceNo" in g.columns:
-            # Mantiene la marca temporal de la visita usando el mínimo InvoiceDate de ese InvoiceNo
             visit = (
                 g.groupby("InvoiceNo", as_index=False)
                  .agg(
@@ -38,7 +37,6 @@ class FeatureEngineer:
                  .reset_index(drop=True)
             )
         else:
-            # Fallback: agrupar por (InvoiceDate) exacto -> “visita” aproximada
             # Si tienes varias compras exactamente en el mismo segundo, esto sigue siendo razonable.
             visit = (
                 g.groupby("InvoiceDate", as_index=False)
@@ -84,11 +82,7 @@ class FeatureEngineer:
 
         return cp
 
-    # -----------------------------
-    # API pública
-    # -----------------------------
     def create_features(self):
-        # Tipar fecha y calcular Revenue
         self.df["InvoiceDate"] = self._to_datetime(self.df["InvoiceDate"])
         self.df["Revenue"] = self.df["Quantity"] * self.df["UnitPrice"]
         return self.df
@@ -96,7 +90,7 @@ class FeatureEngineer:
     def linea_tiempo(self):
         if self.df is None:
             raise ValueError("Llama primero a create_features().")
-        # Para ordenar estable, a nivel cliente-visita (InvoiceNo si existe)
+        # Para ordenar estable, a nivel cliente-visita
         sort_cols = ["CustomerID", "InvoiceDate"]
         if "InvoiceNo" in self.df.columns:
             sort_cols = ["CustomerID", "InvoiceDate", "InvoiceNo"]
