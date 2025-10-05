@@ -169,10 +169,10 @@ def train_baseline(df: pd.DataFrame, cfg: FlowCfg, num_cols: List[str], cat_cols
 @task
 def train_optuna(df: pd.DataFrame, cfg: FlowCfg, num_cols: List[str], cat_cols: List[str]) -> Dict[str, Any]:
     log = get_run_logger()
-    # Cambia experimento a Optuna
     mlflow.set_experiment(cfg.experiment_optuna)
 
-    trainer = TrainOptuna(
+    import inspect
+    kwargs = dict(
         df=df,
         numeric_features=num_cols,
         categorical_features=cat_cols,
@@ -182,10 +182,20 @@ def train_optuna(df: pd.DataFrame, cfg: FlowCfg, num_cols: List[str], cat_cols: 
         n_trials=cfg.n_trials,
         optimization_metric=cfg.optimization_metric,
         param_distributions=cfg.param_distributions,
-        random_state=cfg.random_state,
+        # random_state will be added conditionally below
     )
 
-    # API estilo notebook: retorna (best_pipeline, best_run_id, study)
+    # ← only include random_state if TrainOptuna supports it
+    try:
+        sig = inspect.signature(TrainOptuna)
+        if "random_state" in sig.parameters:
+            kwargs["random_state"] = cfg.random_state
+    except (ValueError, TypeError):
+        pass
+
+    trainer = TrainOptuna(**kwargs)
+
+    # Your notebook-style API:
     best_pipeline, best_run_id, study = trainer.train()
     best_score = getattr(study, "best_value", None)
     best_params = getattr(study, "best_params", {})
