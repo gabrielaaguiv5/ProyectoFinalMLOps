@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/2a3c182e14644d018ab7c6433dbefec9/artifacts
+end_time: 1759682438895
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: 2a3c182e14644d018ab7c6433dbefec9
+run_name: salty-yak-336
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759682430806
+status: 3
+tags: []
+user_id: gabri

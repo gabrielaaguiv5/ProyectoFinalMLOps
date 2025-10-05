@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/74b3e9561c294cffbcd79d9c51f6189c/artifacts
+end_time: 1759682289051
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: 74b3e9561c294cffbcd79d9c51f6189c
+run_name: fortunate-ray-291
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759682281784
+status: 3
+tags: []
+user_id: gabri

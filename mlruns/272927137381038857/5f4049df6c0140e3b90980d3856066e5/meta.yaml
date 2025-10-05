@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/5f4049df6c0140e3b90980d3856066e5/artifacts
+end_time: 1759682307520
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: 5f4049df6c0140e3b90980d3856066e5
+run_name: charming-worm-589
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759682301775
+status: 3
+tags: []
+user_id: gabri

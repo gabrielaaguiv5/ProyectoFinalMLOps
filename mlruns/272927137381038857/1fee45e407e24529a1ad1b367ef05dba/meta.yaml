@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/1fee45e407e24529a1ad1b367ef05dba/artifacts
+end_time: 1759682230181
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: 1fee45e407e24529a1ad1b367ef05dba
+run_name: crawling-rook-721
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759682224128
+status: 3
+tags: []
+user_id: gabri

@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/44d9ac5ffb0d49a7adb58ea6ef3d9c69/artifacts
+end_time: 1759682295171
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: 44d9ac5ffb0d49a7adb58ea6ef3d9c69
+run_name: awesome-loon-572
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759682289301
+status: 3
+tags: []
+user_id: gabri

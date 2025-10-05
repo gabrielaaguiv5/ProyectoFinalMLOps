@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/1fe58dc26a1d434ab174504e1562854f/artifacts
+end_time: 1759682350380
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: 1fe58dc26a1d434ab174504e1562854f
+run_name: placid-conch-444
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759682307783
+status: 3
+tags: []
+user_id: gabri

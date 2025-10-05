@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/609662acc8ff4df58ede34e47e20c7f9/artifacts
+end_time: 1759682356210
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: 609662acc8ff4df58ede34e47e20c7f9
+run_name: marvelous-snail-280
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759682350597
+status: 3
+tags: []
+user_id: gabri

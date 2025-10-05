@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/a28b557b23f44b119d319f9864c6910d/artifacts
+end_time: 1759682563730
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: a28b557b23f44b119d319f9864c6910d
+run_name: likeable-lamb-254
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759682557316
+status: 3
+tags: []
+user_id: gabri

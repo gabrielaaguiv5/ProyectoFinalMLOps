@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/3ba23499588446ddb72d7e3551b486e9/artifacts
+end_time: 1759682272585
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: 3ba23499588446ddb72d7e3551b486e9
+run_name: lyrical-lynx-865
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759682266345
+status: 3
+tags: []
+user_id: gabri

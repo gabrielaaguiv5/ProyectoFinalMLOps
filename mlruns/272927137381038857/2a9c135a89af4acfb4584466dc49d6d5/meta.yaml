@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/2a9c135a89af4acfb4584466dc49d6d5/artifacts
+end_time: 1759682248188
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: 2a9c135a89af4acfb4584466dc49d6d5
+run_name: charming-newt-586
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759682242758
+status: 3
+tags: []
+user_id: gabri

@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/dad63a45fab544908f576f91ee5c8032/artifacts
+end_time: 1759682208718
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: dad63a45fab544908f576f91ee5c8032
+run_name: funny-wren-620
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759682202864
+status: 3
+tags: []
+user_id: gabri

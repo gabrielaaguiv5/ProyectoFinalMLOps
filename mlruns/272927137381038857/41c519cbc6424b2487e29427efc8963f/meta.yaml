@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/272927137381038857/41c519cbc6424b2487e29427efc8963f/artifacts
+end_time: 1759682363356
+entry_point_name: ''
+experiment_id: '272927137381038857'
+lifecycle_stage: active
+run_id: 41c519cbc6424b2487e29427efc8963f
+run_name: receptive-asp-97
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759682356524
+status: 3
+tags: []
+user_id: gabri

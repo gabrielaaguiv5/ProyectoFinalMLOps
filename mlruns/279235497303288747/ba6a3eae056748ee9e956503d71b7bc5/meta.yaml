@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/279235497303288747/ba6a3eae056748ee9e956503d71b7bc5/artifacts
+end_time: 1759682195394
+entry_point_name: ''
+experiment_id: '279235497303288747'
+lifecycle_stage: active
+run_id: ba6a3eae056748ee9e956503d71b7bc5
+run_name: resilient-rat-486
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759682189450
+status: 3
+tags: []
+user_id: gabri

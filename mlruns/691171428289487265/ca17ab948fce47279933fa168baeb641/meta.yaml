@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/691171428289487265/ca17ab948fce47279933fa168baeb641/artifacts
+end_time: 1759682189295
+entry_point_name: ''
+experiment_id: '691171428289487265'
+lifecycle_stage: active
+run_id: ca17ab948fce47279933fa168baeb641
+run_name: classy-kit-921
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759682174383
+status: 3
+tags: []
+user_id: gabri
