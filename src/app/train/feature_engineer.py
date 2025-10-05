@@ -6,10 +6,16 @@ class FeatureEngineer:
     def __init__(self, df):
         self.df = df
 
+    @staticmethod
     def _to_datetime(s: pd.Series) -> pd.Series:
         if not np.issubdtype(s.dtype, np.datetime64):
             return pd.to_datetime(s, errors="coerce", utc=False)
         return s
+
+    def create_features(self):
+        self.df["InvoiceDate"] = self._to_datetime(self.df["InvoiceDate"])
+        self.df["Revenue"] = self.df["Quantity"] * self.df["UnitPrice"]
+        return self.df
 
     def _collapse_to_visit_level(self, g: pd.DataFrame) -> pd.DataFrame:
         """
