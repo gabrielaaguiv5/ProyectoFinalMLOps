@@ -14,7 +14,7 @@ REPO_ROOT = r"C:\Users\usuari\documents\repo\ProyectoFinalMLOps"
 if REPO_ROOT not in sys.path:
     sys.path.insert(0, REPO_ROOT)
 
-print(f"📂 Proyecto raíz detectado en: {REPO_ROOT}")
+print(f" Proyecto raíz detectado en: {REPO_ROOT}")
 
 MODEL_PATH = os.path.join(REPO_ROOT, "src", "app", "train", "models", "modeloptuna.pkl")
 OUT_PATH = os.path.join(REPO_ROOT, "data", "predictions", "predictions_repurchase.csv")
@@ -56,7 +56,7 @@ def main():
     df_features["prediction"] = y_pred
     df_features["probability"] = y_proba
     df_features.to_csv(OUT_PATH, index=False)
-    print(f"✅ Predicciones guardadas en {OUT_PATH}")
+    print(f"Predicciones guardadas en {OUT_PATH}")
     
     print("DEBUG - __file__:", __file__)
     print("DEBUG - CURRENT_DIR:", CURRENT_DIR)
