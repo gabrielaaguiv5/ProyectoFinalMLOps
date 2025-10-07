@@ -251,6 +251,18 @@ Estos resultados reafirman que el modelo mantiene un equilibrio adecuado entre p
 <img width="893" height="431" alt="image" src="https://github.com/user-attachments/assets/6fc31e83-31de-4c8e-9748-527ef1c633db" />
 <img width="862" height="429" alt="image" src="https://github.com/user-attachments/assets/52f9b902-806f-49b9-9fc6-4a0d8adbba79" />
 
+**predict.py**
+Este script ejecuta el proceso completo de predicción de recompra de clientes en el proyecto ProyectoFinalMLOps.
+Configura las rutas principales del repositorio y del modelo entrenado (modeloptuna.pkl).
+Ejecuta el pipeline de ETL mediante la clase UserGenerator, que carga y limpia los datos de entrada.
+Aplica ingeniería de características con la clase FeatureEngineer para preparar los datos para el modelo.
+Carga el modelo entrenado previamente guardado con joblib.
+Realiza predicciones y calcula las probabilidades de recompra para cada registro.
+Guarda los resultados en un archivo CSV dentro de data/predictions/predictions_repurchase.csv.
+
+<img width="1182" height="597" alt="image" src="https://github.com/user-attachments/assets/ec082f5f-5ec7-4f50-bd5c-3df6633b0e8e" />
+<img width="1163" height="351" alt="image" src="https://github.com/user-attachments/assets/1a7bddee-8b36-45ed-aa92-01cc92cc7352" />
+
 
 
 
