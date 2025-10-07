@@ -208,6 +208,50 @@ trainer.save_model("models/modeloptuna.pkl")
 <img width="1365" height="664" alt="image" src="https://github.com/user-attachments/assets/870bfe54-00bf-4c6d-8ee7-9adbc2b31379" />
 <img width="1355" height="663" alt="image" src="https://github.com/user-attachments/assets/ea632561-fdf6-4545-93d3-2bf89fee004b" />
 
+**Desempeño del modelo**
+
+**1.Matriz de confusion**:
+El modelo logra identificar correctamente el 90% de los casos negativos (clase 0), mientras que en la clase positiva (1) alcanza una detección del 44%, evidenciando un buen desempeño general
+<img width="585" height="433" alt="image" src="https://github.com/user-attachments/assets/9427141f-82cf-41ba-9031-1d3606c319e5" />
+
+**2.Curva ROC (AUC = 0.74)**:
+Indica una capacidad de discriminación aceptable entre ambas clases, lo que demuestra que el modelo puede diferenciar razonablemente bien los eventos positivos y negativos.
+<img width="514" height="429" alt="image" src="https://github.com/user-attachments/assets/8d7af8c3-295d-45eb-944d-c9d3f7d5aac7" />
+
+**3.**Curva Precision–Recall (AP = 0.72)**
+Muestra un equilibrio adecuado entre precisión y cobertura, reflejando que el modelo mantiene una buena calidad de predicción
+<img width="501" height="417" alt="image" src="https://github.com/user-attachments/assets/bedb1353-316f-492d-bb83-a6303456a661" />
+
+**Estructura del pipeline**
+El pipeline implementado integra los pasos principales de un proceso de aprendizaje supervisado:
+Imputación de valores faltantes (SimpleImputer)
+Escalado de variables numéricas (StandardScaler)
+Codificación de variables categóricas (OneHotEncoder)
+Entrenamiento con regresión logística optimizada
+
+Durante la orquestación, Prefect permitió ejecutar de manera controlada las tareas de configuración, construcción de características, entrenamiento base, optimización y validación final.
+Cada ejecución fue monitoreada y registrada en MLflow, asegurando reproducibilidad, versionamiento y trazabilidad completa de los experimentos.
+<img width="855" height="415" alt="image" src="https://github.com/user-attachments/assets/d27312fb-425d-4a73-aebf-a48d2e07981b" />
+<img width="869" height="422" alt="image" src="https://github.com/user-attachments/assets/d3d2761a-ebdf-4f27-80c5-accdf5168a8c" />
+
+**Resultados del modelo optimizado**
+El mejor modelo identificado por Optuna fue una Regresión Logística con los siguientes parámetros destacados:
+Regularización: L2
+Coeficiente C ≈ 0.8199
+Iteraciones máximas: 393
+Optimizador: saga
+En MLflow, las métricas promedio obtenidas fueron:
+Accuracy: 0.70
+F1-score: 0.68
+Precision: 0.70
+Recall: 0.70
+
+Estos resultados reafirman que el modelo mantiene un equilibrio adecuado entre precisión y sensibilidad, alcanzando un rendimiento confiable dentro del conjunto de prueba
+
+<img width="893" height="431" alt="image" src="https://github.com/user-attachments/assets/6fc31e83-31de-4c8e-9748-527ef1c633db" />
+<img width="862" height="429" alt="image" src="https://github.com/user-attachments/assets/52f9b902-806f-49b9-9fc6-4a0d8adbba79" />
+
+
 
 
 
